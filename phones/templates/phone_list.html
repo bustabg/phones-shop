@@ -1,0 +1,16 @@
+
+    <div class="row">
+        {% for phone in phones %}
+         <div class="col-lg-4">
+              <div class="card" style="width: 18rem;">
+          <img src="{{phone.image_url}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{phone.model}}</h5>
+            <p class="card-text">{{phone.description}}</p>
+            <a href="{% url 'phone-detail' phone.id %}" class="btn btn-primary">See details</a>
+          </div>
+        </div>
+         </div>
+        {% endfor %}
+    </div>
+
