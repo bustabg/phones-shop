@@ -25,6 +25,8 @@ SECRET_KEY = '6bv2gb4n1br_njl93_ftj1g0+v=ojg!aw9%l02_4_@2*u7*7+a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 ALLOWED_HOSTS = []
 
 
@@ -38,8 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+
     'phones',
     'accounts',
+    'common',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+LOGOUT_REDIRECT_URL = '/phones/'
+LOGIN_REDIRECT_URL = '/phones/'

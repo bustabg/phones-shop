@@ -5,7 +5,7 @@ from .models import Phone, Brand
 
 
 class CreateBrandForm(forms.ModelForm):
-    brand = forms.ModelChoiceField(queryset=Brand.objects.all(), widget=forms.Select(
+    brand = forms.CharField(required=True, widget=forms.TextInput(
                                 attrs={
                                     'class': 'form-control'
                                 }
@@ -13,7 +13,7 @@ class CreateBrandForm(forms.ModelForm):
 
     class Meta:
         model = Brand
-        fields = ('brand', )
+        fields = ('id', 'brand')
 
 
 class CreatePhoneForm(forms.ModelForm):

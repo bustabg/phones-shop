@@ -1,4 +1,7 @@
+{% extends 'index.html' %}
 
+{% block 'body' %}
+    {% if phones %}
     <div class="row">
         {% for phone in phones %}
          <div class="col-lg-4">
@@ -7,10 +10,16 @@
           <div class="card-body">
             <h5 class="card-title">{{phone.model}}</h5>
             <p class="card-text">{{phone.description}}</p>
-            <a href="{% url 'phone-detail' phone.id %}" class="btn btn-primary">See details</a>
+            <a href="{% url 'phone-details' phone.id %}" class="btn btn-primary">See details</a>
           </div>
         </div>
          </div>
         {% endfor %}
     </div>
+    {% else %}
+<h1>No phones  <a href="{% url 'phone-create' %}"> Create one?</a></h1>>
 
+    {% endif %}
+
+
+{% endblock %}

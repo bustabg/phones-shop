@@ -1,21 +1,23 @@
+{% extends 'index.html' %}
 
+{% block 'body' %}
      <div class="row">
             <div class="col-lg-6">
             <img src="{{phone.image_url}}" style="width: 100%" alt="">
         </div>
         <div class="col-lg-6">
-            <h3>Brand: {{phone.brand}}</h3>
-            <h3>Model: {{phone.model}}</h3>
-            {% if .screen_size %}
-            <h3>Screen size is {{phone.screen_size}} inches</h3>
+            {% if phone.brand %}
+            <h3>Brand: {{phone.brand}}.</h3>
             {% endif %}
-            <h3>Price: {{phone.price}}</h3>
+            <h3>Model: {{phone.phone_model}}</h3>
+            <h3>Price: {{phone.price}} leva.</h3>
+            <h3>Screen size: {{phone.screen_size}} inches.</h3>
             <p>Description: {{phone.description}}</p>
-            {% if  is_user_furniture %}
+
             <a href="{% url 'phone-edit' phone.id %}" class="btn btn-success">Edit</a>
             <a href="{% url 'phone-delete' phone.id %}" class="btn btn-danger">Delete</a>
-            {% endif %}
+
         </div>
     </div>
 
-
+{% endblock %}
