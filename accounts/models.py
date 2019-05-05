@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 class ProfileUser(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='detail_user')
     profile_picture = models.URLField(default='http://s3.amazonaws.com/37assets/svn/765-default-avatar.png')
     phone_number = PhoneNumberField(null=False, unique=True)
 

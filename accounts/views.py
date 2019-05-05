@@ -11,6 +11,14 @@ from .models import ProfileUser
 # Create your views here.
 
 
+class UserProfileEdit(generic.UpdateView):
+    model = ProfileUser
+    form_class = UserCreationForm
+    template_name = 'edit_user.html'
+    success_url = '/phones/'
+
+
+
 def redirect_user(request):
     url = f'/phones/'
     return HttpResponseRedirect(url)
@@ -51,15 +59,4 @@ class SignUp(generic.CreateView):
     template_name = 'signup.html'
 
 
-class UserProfileEdit(generic.DetailView):
-    model = ProfileUser
-    form_class = UserCreationForm
-    template_name = 'user_profile_detail.html'
-    success_url = '/phones/'
-    context_object_name = 'user-edit'
 
-
-# def logout_view(request):
-#     logout(request)
-#     redirect_url = f'/phones/'
-#     return HttpResponseRedirect(redirect_to=redirect_url)

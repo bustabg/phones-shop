@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom:2%">
-  <a class="navbar-brand" href="\gotoLanding">Navbar</a>
+  <a class="navbar-brand" href="{% url 'landing' %}">Welcome</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -33,7 +33,7 @@
           {% if user.is_superuser %}
             <a class="dropdown-item" href="{% url 'brand-add' %}">Add brand</a>
           {% endif %}
-          <a class="dropdown-item" href="{% url 'user-profile-edit' user.id %}">Profile</a>
+          <a class="dropdown-item" href="{% url 'edit_user' user.id %}">Profile</a>
           <a class="dropdown-item" href="{% url 'user-profile' user.id %}">Change/reset password</a>
           <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
         </div>

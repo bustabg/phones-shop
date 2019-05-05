@@ -8,6 +8,8 @@ from .models import Phone, Brand
 from .forms import CreatePhoneForm, CreateBrandForm
 
 from accounts.models import ProfileUser
+from reviews.models import Review
+from reviews.forms import ReviewForm
 # Create your views here.
 
 
@@ -47,38 +49,40 @@ class PhoneDetails(LoginRequiredMixin, generic.DetailView):
     context_object_name = 'phone'
     template_name = 'phone_details.html'
 
-    # def get_context_data(self, *, object_list=None, **kwargs):
-    #     context = super(PhoneDetails, self).get_context_data(**kwargs)
-    #     context['reviews'] = Review.objects.all().filter(furniture=self.get_object())
-    #     context['form'] = ReviewForm()
-    #     # context['form'].fields['author'].initial = self.request.user.id
-    #     print(context)
-    #     owner = context['object'].user
-    #     current_user = self.request.user
-    #     if has_access_to_modify(current_user, owner):
-    #         context['is_user_furniture'] = True
-    #         return context
-    #     context['is_user_furniture'] = False
-    #     return context
-    #
-    # def post(self, request, pk):
-    #     url = f'/furniture/details/{self.get_object().id}/'
-    #     post_values = request.POST.copy()
-    #     form = ReviewForm(post_values)
-    #
-    #     if form.is_valid():
-    #         author = ProfileUser.objects.all().filter(user__pk=request.user.id)[0]
-    #         post_values['furniture'] = self.get_object()
-    #         review = Review(
-    #             content=post_values['content'],
-    #             score=post_values['score'],
-    #             furniture=self.get_object(),
-    #             author=author
-    #         )
-    #         review.save()
-    #         return HttpResponseRedirect(url)
-    #     else:
-    #         raise Exception(form.errors)
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(PhoneDetails, self).get_context_data(**kwargs)
+        context['reviews'] = Review.objects.all().filter(phone=self.get_object())
+        context['form'] = ReviewForm()
+        # context['form'].fields['author'].initial = self.request.user.id
+        print(context)
+        owner = context['object'].user
+        current_user = self.request.user
+        if has_access_to_modify(current_user, owner):
+            context['is_user_phone'] = True
+            return context
+        context['is_user_phone'] = False
+        return context
+
+    def post(self, request, pk):
+        url = f'/phones/details/{self.get_object().id}/'
+        post_values = request.POST.copy()
+        form = ReviewForm(post_values)
+
+        if form.is_valid():
+            author = ProfileUser.objects.all().filter(user__pk=request.user.id)[0]
+            post_values['phone'] = self.get_object()
+            review = Review(
+                content=post_values['content'],
+                score=post_values['score'],
+                phone=self.get_object(),
+                author=author,
+                posted_data=post_values['posted_data']
+
+            )
+            review.save()
+            return HttpResponseRedirect(url)
+        else:
+            raise Exception(form.errors)
 
 
 class PhoneDelete(LoginRequiredMixin, generic.DeleteView):
