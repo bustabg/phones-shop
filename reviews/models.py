@@ -11,3 +11,6 @@ class Review(models.Model):
     score = models.PositiveIntegerField()
     phone = models.ForeignKey(Phone, on_delete=models.CASCADE)
     posted_data = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Review by {self.author} for {self.phone}'

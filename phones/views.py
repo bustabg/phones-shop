@@ -37,8 +37,8 @@ class UserPhoneList(generic.ListView):
 
         try:
             user = ProfileUser.objects.all().filter(user__pk=user_id)[0]
-            furniture = Phone.objects.all().filter(user=user.pk)
-            return furniture
+            phone = Phone.objects.all().filter(user=user.pk)
+            return phone
         except:
             return []
 

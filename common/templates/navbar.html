@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom:2%">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="margin-bottom:2%">
   <a class="navbar-brand" href="{% url 'landing' %}">Welcome</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -40,5 +40,10 @@
       </li>
          {% endif %}
     </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
+    </form>
+
   </div>
 </nav>
