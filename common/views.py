@@ -5,8 +5,8 @@ from .forms import AddImageForm
 # Create your views here.
 
 
-def landing(request):
-    return render(request, 'landing_page.html')
+# def landing(request):
+#     return render(request, 'landing_page.html')
 
 
 class Landing(generic.CreateView):
@@ -14,3 +14,6 @@ class Landing(generic.CreateView):
     form_class = AddImageForm
     template_name = 'landing_page.html'
     success_url = '/'
+    context_object_name = 'obj'
+
+

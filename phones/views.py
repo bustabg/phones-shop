@@ -53,8 +53,6 @@ class PhoneDetails(LoginRequiredMixin, generic.DetailView):
         context = super(PhoneDetails, self).get_context_data(**kwargs)
         context['reviews'] = Review.objects.all().filter(phone=self.get_object())
         context['form'] = ReviewForm()
-        # context['form'].fields['author'].initial = self.request.user.id
-        print(context)
         owner = context['object'].user
         current_user = self.request.user
         if has_access_to_modify(current_user, owner):
@@ -88,7 +86,7 @@ class PhoneDetails(LoginRequiredMixin, generic.DetailView):
 class PhoneDelete(LoginRequiredMixin, generic.DeleteView):
     model = Phone
     login_url = '/accounts/login/'
-    context_object_name = 'phone'
+    context_object_name = 'phones'
 
     def get(self, request, pk):
         if not has_access_to_modify(self.request.user, self.get_object()):
@@ -100,7 +98,7 @@ class PhoneDelete(LoginRequiredMixin, generic.DeleteView):
             return render(request, 'permission_denied.html')
         phone = self.get_object()
         phone.delete()
-        return HttpResponseRedirect('/phone/')
+        return HttpResponseRedirect('/phones/')
 
 
 class PhoneCreate(generic.CreateView):

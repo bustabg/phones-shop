@@ -5,14 +5,7 @@ from .models import Review
 
 
 class ReviewForm(forms.Form):
-
-    # author = forms.CharField(widget=forms.TextInput(
-    #     attrs={
-    #         'class': 'form-control',
-    #     }
-    # ))
-
-    score = forms.IntegerField(validators= [MinValueValidator(1), MaxValueValidator(5)],widget=forms.TextInput(
+    score = forms.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)],widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'type': 'number'

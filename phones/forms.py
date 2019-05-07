@@ -1,14 +1,17 @@
 from django import forms
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
 
 from .models import Phone, Brand
 
 
 class CreateBrandForm(forms.ModelForm):
-    brand = forms.CharField(required=True, widget=forms.TextInput(
+    brand = forms.CharField(required=True, validators=[RegexValidator(r'^[A-Z][a-z]+$',
+                                message='Brand should start with capital letter followed by small letters!')],
+                                widget=forms.TextInput(
                                 attrs={
                                     'class': 'form-control'
-                                }
+                                },
+
                                 ))
 
     class Meta:
@@ -17,6 +20,12 @@ class CreateBrandForm(forms.ModelForm):
 
 
 class CreatePhoneForm(forms.ModelForm):
+
+    brand = forms.ModelChoiceField(queryset=Brand.objects.all(), widget=forms.Select(
+                            attrs={
+                                  'class': 'form-control'
+                            }
+                            ))
 
     phone_model = forms.CharField(required=True, widget=forms.TextInput(
                             attrs={
@@ -38,7 +47,7 @@ class CreatePhoneForm(forms.ModelForm):
                             ))
 
     image_url = forms.CharField(required=True, widget=forms.TextInput(
-                                attrs= {
+                                attrs={
                                     'class': 'form-control'
                                 }
                                 ))

@@ -8,15 +8,8 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 
 from .models import ProfileUser
+from .forms import MyUserCreationForm
 # Create your views here.
-
-
-class UserProfileEdit(generic.UpdateView):
-    model = ProfileUser
-    form_class = UserCreationForm
-    template_name = 'edit_user.html'
-    success_url = '/phones/'
-
 
 
 def redirect_user(request):
@@ -26,7 +19,7 @@ def redirect_user(request):
 
 def redirect_to_user_profile(request):
     if request.user.is_authenticated:
-        redirect_url = f"{request.user.id}"
+        redirect_url = f"{request.user.pk}"
         return HttpResponseRedirect(redirect_to=redirect_url)
 
 
@@ -54,9 +47,17 @@ class UserDetail(generic.DetailView):
 
 
 class SignUp(generic.CreateView):
+    model = User
     form_class = UserCreationForm
     success_url = '/accounts/login/'
     template_name = 'signup.html'
 
 
+class UserProfileEdit(generic.UpdateView):
+    model = ProfileUser
+    form_class = MyUserCreationForm
+    template_name = 'edit_user.html'
+    success_url = '/phones/'
 
+    def get_object(self):
+        return self.request.user.profileuser

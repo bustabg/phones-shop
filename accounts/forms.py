@@ -3,7 +3,7 @@ from django import forms
 from .models import ProfileUser
 
 
-class UserCreationForm(forms.ModelForm):
+class MyUserCreationForm(forms.ModelForm):
     profile_picture = forms.CharField(required=True, widget=forms.URLInput(
                                 attrs={
                                     'class': 'form-control'
