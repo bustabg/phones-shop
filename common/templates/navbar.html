@@ -23,6 +23,8 @@
           <a class="dropdown-item" href="{% url 'phones' %}">All</a>
           <a class="dropdown-item" href="{% url 'phone-create' %}">Create</a>
           <a class="dropdown-item" href="{% url 'mine-phones' %}">My phones</a>
+          <a class="dropdown-item" href="{% url 'phone-search' %}">Search</a>
+
         </div>
       </li>
          <li class="nav-item dropdown">
@@ -40,10 +42,9 @@
       </li>
          {% endif %}
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
-    </form>
+
+
+
 
   </div>
 </nav>

@@ -3,13 +3,15 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 
-
 from .models import Phone, Brand
-from .forms import CreatePhoneForm, CreateBrandForm
+from .forms import CreatePhoneForm, CreateBrandForm, PhoneSearchForm
 
 from accounts.models import ProfileUser
 from reviews.models import Review
 from reviews.forms import ReviewForm
+
+from search_views.search import SearchListView
+from search_views.filters import BaseFilter
 # Create your views here.
 
 
@@ -21,7 +23,7 @@ def has_access_to_modify(current_user, phone):
     return False
 
 
-class ListPhone(generic.ListView):
+class PhoneList(generic.ListView):
     model = Phone
     template_name = "phone_list.html"
     context_object_name = 'phones'
@@ -137,3 +139,22 @@ class BrandCreate(generic.CreateView):
     template_name = 'brand_create.html'
     form_class = CreateBrandForm
     success_url = '/phones/'
+
+
+class PhoneFilter(BaseFilter):
+
+    search_fields = {
+        'search_text': ['phone_model'],
+        'search_price_min': {'operator': '__gte', 'fields': ['price']},
+        'search_price_max': {'operator': '__lte', 'fields': ['price']},
+        'search_screen_size_min': {'operator': '__gte', 'fields': ['screen_size']},
+        'search_screen_size_max': {'operator': '__lte', 'fields': ['screen_size']},
+     }
+
+
+class PhoneSearchList(SearchListView):
+    model = Phone
+    template_name = "search_list.html"
+    form_class = PhoneSearchForm
+    filter_class = PhoneFilter
+    context_object_name = 'phone'

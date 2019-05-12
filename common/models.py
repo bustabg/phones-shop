@@ -4,4 +4,7 @@ from django.db import models
 
 
 class AddImage(models.Model):
-    image = models.ImageField(upload_to='images')
+    image = models.ImageField(upload_to='images/')
+    date_created = models.DateTimeField(auto_now_add=True)
+
+

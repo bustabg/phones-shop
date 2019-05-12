@@ -127,9 +127,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 LOGOUT_REDIRECT_URL = '/phones/'
 LOGIN_REDIRECT_URL = '/phones/'
-
+#
 MEDIA_URL = '/images/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
+MEDIA_ROOT = os.path.join(BASE_DIR, '')

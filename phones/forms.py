@@ -39,7 +39,8 @@ class CreatePhoneForm(forms.ModelForm):
                             }
                             ))
 
-    price = forms.IntegerField(required=True, validators=[MinValueValidator(1)], widget=forms.TextInput(
+    price = forms.IntegerField(required=True, validators=[MinValueValidator(10,
+                                message='Minimum price is 10')], widget=forms.TextInput(
                             attrs={
                                 'class': 'form-control',
                                 'type': 'number'
@@ -52,7 +53,8 @@ class CreatePhoneForm(forms.ModelForm):
                                 }
                                 ))
 
-    screen_size = forms.FloatField(required=True, validators=[MinValueValidator(2), MaxValueValidator(10)],
+    screen_size = forms.FloatField(required=True, validators=[MinValueValidator(2, message='Screen size should between 2 and 10'),
+                                                              MaxValueValidator(10, message='Screen size should between 2 and 10')],
                                    widget=forms.NumberInput(
                                        attrs={
                                            'class': 'form-control',
@@ -63,3 +65,19 @@ class CreatePhoneForm(forms.ModelForm):
     class Meta:
         model = Phone
         fields = ('id', 'brand', 'phone_model', 'description', 'price', 'image_url', 'screen_size')
+
+
+class PhoneSearchForm(forms.Form):
+    # search_brand = forms.CharField(required=False, label='Search by brand!',
+    #                 widget=forms.TextInput(attrs={'placeholder': 'search here!'}))
+
+    search_phone_model = forms.CharField(required=False, label='Search by model!',
+                    widget=forms.TextInput(attrs={'placeholder': 'search here!'}))
+
+    search_price_min = forms.IntegerField(required=False, label='Min price')
+
+    search_price_max = forms.IntegerField(required=False, label='Max price')
+
+    search_screen_size_min = forms.FloatField(required=False, label='Min screen size')
+
+    search_screen_size_max = forms.FloatField(required=False, label='Max screen size')
