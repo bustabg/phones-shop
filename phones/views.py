@@ -144,7 +144,8 @@ class BrandCreate(generic.CreateView):
 class PhoneFilter(BaseFilter):
 
     search_fields = {
-        'search_text': ['phone_model'],
+        # 'search_brand': ['brand'],
+        'search_phone_model': ['phone_model'],
         'search_price_min': {'operator': '__gte', 'fields': ['price']},
         'search_price_max': {'operator': '__lte', 'fields': ['price']},
         'search_screen_size_min': {'operator': '__gte', 'fields': ['screen_size']},
@@ -157,4 +158,9 @@ class PhoneSearchList(SearchListView):
     template_name = "search_list.html"
     form_class = PhoneSearchForm
     filter_class = PhoneFilter
-    context_object_name = 'phone'
+    # context_object_name = 'phone'
+
+    def get_context_data(self, **kwargs):
+        context = super(PhoneSearchList, self).get_context_data(**kwargs)
+        print(context)
+        return context

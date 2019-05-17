@@ -7,21 +7,23 @@
 
 
 
-        <form method="get" action="." style="margin: 0">
-
+        <form class="" method="GET" action="" style="margin: 0">
             {{ form.as_p }}
-        <input  id="search_box" type="text" name="search_box"  placeholder="Search..." >
+
         <button id="search_submit" type="submit" >Submit</button>
         </form>
 
-        {% for phone in phones %}
+        {% for object  in object_list %}
          <div class="col-lg-4">
               <div class="card" style="width: 18rem;">
-          <img src="{{phone.image_url}}" class="card-img-top" alt="...">
+          <img src="{{object.image_url}}" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">{{phone.model}}</h5>
-            <p class="card-text">{{phone.description}}</p>
-            <a href="{% url 'phone-details' phone.id %}" class="btn btn-primary">See details</a>
+            <h5 class="card-title">{{object.model}}</h5>
+              <h3>Model: {{object.phone_model}}</h3>
+              <h3>Price: {{object.price}} leva.</h3>
+
+              <a href="{% url 'phone-details' object.id %}" class="btn btn-primary">See details</a>
+
           </div>
         </div>
          </div>

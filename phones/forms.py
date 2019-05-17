@@ -72,7 +72,7 @@ class PhoneSearchForm(forms.Form):
     #                 widget=forms.TextInput(attrs={'placeholder': 'search here!'}))
 
     search_phone_model = forms.CharField(required=False, label='Search by model!',
-                    widget=forms.TextInput(attrs={'placeholder': 'search here!'}))
+                                    widget=forms.TextInput(attrs={'placeholder': 'search here!'}))
 
     search_price_min = forms.IntegerField(required=False, label='Min price')
 
