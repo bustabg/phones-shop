@@ -27,6 +27,7 @@ class PhoneList(generic.ListView):
     model = Phone
     template_name = "phone_list.html"
     context_object_name = 'phones'
+    paginate_by = 3
 
 
 class UserPhoneList(generic.ListView):
@@ -158,7 +159,7 @@ class PhoneSearchList(SearchListView):
     template_name = "search_list.html"
     form_class = PhoneSearchForm
     filter_class = PhoneFilter
-    # context_object_name = 'phone'
+    context_object_name = 'sdgsdgsdg'
 
     def get_context_data(self, **kwargs):
         context = super(PhoneSearchList, self).get_context_data(**kwargs)

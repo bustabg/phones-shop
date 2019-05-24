@@ -2,7 +2,7 @@
 
 {% block 'body' %}
     {% if request.user.is_superuser %}
-        <form method="post" class="brand-form">
+        <form method="post" class="phone-form">
             {% csrf_token %}
             {{form}}
             <button class="btn btn-primary" type="submit"> Add</button>

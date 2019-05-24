@@ -11,7 +11,6 @@ class CreateBrandForm(forms.ModelForm):
                                 attrs={
                                     'class': 'form-control'
                                 },
-
                                 ))
 
     class Meta:
@@ -68,8 +67,6 @@ class CreatePhoneForm(forms.ModelForm):
 
 
 class PhoneSearchForm(forms.Form):
-    # search_brand = forms.CharField(required=False, label='Search by brand!',
-    #                 widget=forms.TextInput(attrs={'placeholder': 'search here!'}))
 
     search_phone_model = forms.CharField(required=False, label='Search by model!',
                                     widget=forms.TextInput(attrs={'placeholder': 'search here!'}))

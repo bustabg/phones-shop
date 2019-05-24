@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+
+{% block 'body' %}
+    {% if  request.user.is_superuser %}
+     <div class="row">
+
+        <div class="col-lg-6">
+             <div class="card" style="width: 18rem;">
+             <h3>Status: {{question.get_status_display }}.</h3>
+
+            <h3>Name: {{question.name}}</h3>
+            <h3>Email: {{question.name}}.</h3>
+            <h3>Question: {{question.question}}.</h3>
+            <h3>Answer: {{question.answer}}.</h3>
+            <p>Date: {{question.date}}</p>
+
+             <a href="{% url 'question-edit' question.id %}" class="btn btn-success">Answer</a>
+
+            {% endif %}
+             </div>
+        </div>
+    </div>
+
+
+{% endblock %}

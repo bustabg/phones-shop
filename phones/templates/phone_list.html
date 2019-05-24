@@ -8,8 +8,8 @@
               <div class="card" style="width: 18rem;">
           <img src="{{phone.image_url}}" class="card-img-top" alt="..." >
           <div class="card-body">
-            <h5 class="card-title">{{phone.model}}</h5>
-            <p class="card-text">{{phone.description}}</p>
+            <h3>Model: {{phone.phone_model}}</h3>
+            <h3>Price: {{phone.price}} leva.</h3>
             <a href="{% url 'phone-details' phone.id %}" class="btn btn-primary">See details</a>
           </div>
         </div>
@@ -21,5 +21,26 @@
 
     {% endif %}
 
+{% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
 
 {% endblock %}

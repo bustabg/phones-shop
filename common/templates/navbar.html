@@ -41,6 +41,23 @@
         </div>
       </li>
          {% endif %}
+
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownQuestionsLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Q&A
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          {% if user.is_superuser %}
+            <a class="dropdown-item" href="{% url 'question-list' %}">Questions for answer</a>
+          <a class="dropdown-item" href="{% url 'question-rejected-list' %}">Rejected questions</a>
+          {% endif %}
+          <a class="dropdown-item" href="{% url 'question-create' %}">Ask a question</a>
+          <a class="dropdown-item" href="{% url 'question-approved-list' %}">See FAQ</a>
+
+
+        </div>
+      </li>
     </ul>
 
 

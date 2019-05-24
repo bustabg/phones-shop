@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+{% block 'body' %}
+    <div class="row">
+
+        {% for question in questions %}
+        {% if question.get_status_display == "Rejected" %}
+         <div class="col-lg-4">
+          <div class="box">
+
+
+            <h3>Name: {{question.name}}</h3>
+            <h3>Email: {{question.name}}.</h3>
+            <h3>Question: {{question.question}}.</h3>
+            <h3>Answer: {{question.answer}}.</h3>
+              <p>Date posted: {{question.date}}</p>
+          </div>
+         </div>
+
+        {% endif %}
+
+    {% endfor %}
+</div>
+{% endblock %}
